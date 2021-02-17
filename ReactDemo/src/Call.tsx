@@ -13,7 +13,8 @@ function Call() {
   const {
     localAudioTrack, localVideoTrack, leave, join, joinState, remoteUsers
   } = useAgora(client);
-
+  console.log("!joinState val",joinState)
+  console.log("!joinState val is ",!joinState)
   return (
     <div className='call'>
       <form className='call-form'>
@@ -34,12 +35,16 @@ function Call() {
           <button id='leave' type='button' className='btn btn-primary btn-sm' disabled={!joinState} onClick={() => {leave()}}>Leave</button>
         </div>
       </form>
+      {/* <h1>Join state : {joinState}</h1> */}
       <div className='player-container'>
         <div className='local-player-wrapper'>
+        <h1>Hi there</h1>
           <p className='local-player-text'>{localVideoTrack && `localTrack`}{joinState && localVideoTrack ? `(${client.uid})` : ''}</p>
           <MediaPlayer videoTrack={localVideoTrack} audioTrack={localAudioTrack}></MediaPlayer>
         </div>
+        {remoteUsers.length >0&& <h1>Remote User List</h1>}
         {remoteUsers.map(user => (<div className='remote-player-wrapper' key={user.uid}>
+          
             <p className='remote-player-text'>{`remoteVideo(${user.uid})`}</p>
             <MediaPlayer videoTrack={user.videoTrack} audioTrack={user.audioTrack}></MediaPlayer>
           </div>))}

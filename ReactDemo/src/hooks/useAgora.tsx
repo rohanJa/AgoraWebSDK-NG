@@ -60,17 +60,21 @@ export default function useAgora(client: IAgoraRTCClient | undefined)
     setRemoteUsers(client.remoteUsers);
 
     const handleUserPublished = async (user: IAgoraRTCRemoteUser, mediaType: 'audio' | 'video') => {
+      console.log("!user published",user)
       await client.subscribe(user, mediaType);
       // toggle rerender while state of remoteUsers changed.
       setRemoteUsers(remoteUsers => Array.from(client.remoteUsers));
     }
     const handleUserUnpublished = (user: IAgoraRTCRemoteUser) => {
+      console.log("!user unpublished",user)
       setRemoteUsers(remoteUsers => Array.from(client.remoteUsers));
     }
     const handleUserJoined = (user: IAgoraRTCRemoteUser) => {
+      console.log("!user joined",user)
       setRemoteUsers(remoteUsers => Array.from(client.remoteUsers));
     }
     const handleUserLeft = (user: IAgoraRTCRemoteUser) => {
+      console.log("!user left",user)
       setRemoteUsers(remoteUsers => Array.from(client.remoteUsers));
     }
     client.on('user-published', handleUserPublished);
