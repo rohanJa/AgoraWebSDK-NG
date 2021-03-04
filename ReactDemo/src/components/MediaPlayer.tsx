@@ -6,6 +6,9 @@ export interface VideoPlayerProps {
   audioTrack: ILocalAudioTrack | IRemoteAudioTrack | undefined;
 }
 
+// Media Player used for user video
+
+
 const MediaPlayer = (props: VideoPlayerProps) => {
   const container = useRef<HTMLDivElement>(null);
   useEffect(() => {
