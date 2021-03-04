@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AgoraRTC from 'agora-rtc-sdk-ng';
 import useAgora from './hooks/useAgora';
 import MediaPlayer from './components/MediaPlayer';
@@ -32,9 +32,13 @@ function Call() {
     setChannel(channel)
     const token = Agora.RtcTokenBuilder.buildTokenWithUid(appID, appCertificate, channel, uid, role, expirationTimestamp);
     console.log("Token is ",token)
+    console.log("client",client)
     setTempToken(token)
     setToken(token)
   }
+  useEffect(()=>{
+    console.log("client in useEffect",client)
+  },[])
   console.log("joinstate bool",joinState && localVideoTrack)
   console.log("joinstate ",joinState)
   console.log("joinstate localvideo",localVideoTrack)
